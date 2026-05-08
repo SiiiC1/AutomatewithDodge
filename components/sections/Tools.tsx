@@ -5,7 +5,7 @@ import { tools } from '@/data/tools'
 import type { Tool } from '@/data/tools'
 
 const TOOL_LOGOS: Record<string, string> = {
-  'openai':           'https://cdn.simpleicons.org/openai',
+  'openai':           'https://cdn.simpleicons.org/openai/ffffff',
   'claude':           'https://cdn.simpleicons.org/anthropic',
   'claude-code':      'https://cdn.simpleicons.org/anthropic',
   'elevenlabs':       'https://cdn.simpleicons.org/elevenlabs',
