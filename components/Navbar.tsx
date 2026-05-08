@@ -99,7 +99,7 @@ export function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="fixed inset-0 z-30 flex flex-col items-center justify-center gap-8 bg-dark/95 backdrop-blur-lg md:hidden"
+            className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-8 bg-dark/95 backdrop-blur-lg md:hidden"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
