@@ -9,13 +9,13 @@ const TOOL_LOGOS: Record<string, string> = {
   'claude':           'https://cdn.simpleicons.org/anthropic',
   'claude-code':      'https://cdn.simpleicons.org/anthropic',
   'elevenlabs':       'https://cdn.simpleicons.org/elevenlabs',
-  'vapi':             'https://cdn.simpleicons.org/vapi',
+  // vapi — not in Simple Icons, falls back to abbr badge
   'n8n':              'https://cdn.simpleicons.org/n8n',
   'make':             'https://cdn.simpleicons.org/make',
   'zapier':           'https://cdn.simpleicons.org/zapier',
-  'ghl':              'https://cdn.simpleicons.org/gohighlevel',
+  // ghl (GoHighLevel) — not in Simple Icons, falls back to abbr badge
   'zoho':             'https://cdn.simpleicons.org/zoho',
-  'apollo':           'https://cdn.simpleicons.org/apollo',
+  // apollo (apollo.io) — not in Simple Icons, falls back to abbr badge
   'airtable':         'https://cdn.simpleicons.org/airtable',
   'notion':           'https://cdn.simpleicons.org/notion/ffffff',
   'supabase':         'https://cdn.simpleicons.org/supabase',
@@ -30,7 +30,7 @@ const TOOL_LOGOS: Record<string, string> = {
   'github':           'https://cdn.simpleicons.org/github/ffffff',
   'cursor':           'https://cdn.simpleicons.org/cursor',
   'wordpress':        'https://cdn.simpleicons.org/wordpress',
-  'ahrefs':           'https://cdn.simpleicons.org/ahrefs',
+  // ahrefs — not in Simple Icons, falls back to abbr badge
   'xero':             'https://cdn.simpleicons.org/xero',
 }
 

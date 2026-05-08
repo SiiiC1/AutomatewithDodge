@@ -2,13 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+:root,
+html.dark {
   --color-primary: #00D9FF;
   --color-secondary: #7C3AED;
   --color-dark: #0A1628;
   --color-mid: #1E3A5F;
   --color-light: #F8FAFC;
   --color-accent: #10B981;
+  color-scheme: dark;
+}
+
+html.light {
+  --color-primary: #0099BB;
+  --color-secondary: #6D28D9;
+  --color-dark: #F0F4F8;
+  --color-mid: #CBD5E1;
+  --color-light: #0F172A;
+  --color-accent: #059669;
+  color-scheme: light;
 }
 
 * {
@@ -50,6 +62,11 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(0, 217, 255, 0.1);
+}
+
+html.light .glass {
+  background: rgba(203, 213, 225, 0.4);
+  border-color: rgba(0, 153, 187, 0.2);
 }
 
 /* Section padding utility */
