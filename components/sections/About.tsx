@@ -1,12 +1,14 @@
 'use client'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 import { StatCard } from '@/components/ui/StatCard'
 
-const bio = [
-  'I design and deploy AI-powered automation systems using tools like n8n, Make.com, Zapier, and GoHighLevel, integrated with OpenAI and Claude APIs. With experience in logistics process operations and full-stack MERN development, I focus on building structured, reliable workflows that reduce manual work and improve operational efficiency across business systems.',
-  'My mission is to eliminate repetitive work by building simple, reliable automation systems that let businesses operate faster and smarter. I believe workflows should be fully connected and efficient so teams can focus on growth instead of manual tasks.',
-  'I have 1 year of experience building AI automation and workflow systems for small businesses and agencies, focusing on streamlining sales, operations, and customer support processes.',
+const highlights = [
+  'Automated workflows for data capture, processing, and routing',
+  'Designed integrated workflow systems across multiple platforms',
+  'Built AI-driven automation for support and response systems',
+  'Created end-to-end process automation across diverse use cases',
 ]
 
 const stats = [
@@ -17,14 +19,7 @@ const stats = [
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 40 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      ease: 'easeInOut' as const
-    }
-  },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const } },
 }
 
 export function About() {
@@ -52,12 +47,10 @@ export function About() {
                   border: '2px solid rgba(0,217,255,0.3)',
                 }}
               >
-                {/* Photo placeholder */}
                 <div className="w-full h-full flex items-center justify-center bg-mid/50 text-primary/40">
                   <span className="text-4xl font-heading font-bold">D</span>
                 </div>
               </div>
-              {/* Glow ring */}
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
@@ -81,25 +74,47 @@ export function About() {
               <span className="text-xs tracking-[0.3em] font-medium uppercase text-primary mb-3 block">
                 About Me
               </span>
-              <h2 className="font-heading text-h2 text-light">
-                Building Smarter{' '}
-                <span className="text-secondary">Systems</span>
+              <h2 className="font-heading text-h2 text-light leading-tight">
+                Building <span className="text-secondary">smarter systems</span> that run your
+                business on autopilot
               </h2>
             </div>
 
-            <div className="flex flex-col gap-4">
-              {bio.map((paragraph, i) => (
-                <motion.p
+            <motion.p
+              className="text-light/70 leading-relaxed text-sm sm:text-base"
+              initial={{ opacity: 0, x: 20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              I specialize in AI-powered automation for logistics, sales operations, and customer
+              workflows. With 1 year focused on small business automation, I build systems that
+              actually work.
+            </motion.p>
+
+            {/* Highlight list */}
+            <ul className="flex flex-col gap-2.5">
+              {highlights.map((item, i) => (
+                <motion.li
                   key={i}
-                  className="text-light/70 leading-relaxed text-sm sm:text-base pl-4 border-l-2 border-transparent hover:border-secondary transition-colors duration-300"
+                  className="flex items-start gap-3 text-sm text-light/80"
                   initial={{ opacity: 0, x: 20 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.2 + i * 0.15 }}
+                  transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
                 >
-                  {paragraph}
-                </motion.p>
+                  <ArrowRight size={15} className="mt-0.5 flex-shrink-0 text-primary" />
+                  {item}
+                </motion.li>
               ))}
-            </div>
+            </ul>
+
+            <motion.p
+              className="text-sm text-light/60 italic border-t border-mid/60 pt-4"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.75 }}
+            >
+              My mission: eliminate repetitive work so teams can focus on growth instead of manual tasks.
+            </motion.p>
           </div>
         </motion.div>
       </div>
