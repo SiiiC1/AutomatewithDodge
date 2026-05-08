@@ -5,6 +5,36 @@ import { X, ChevronRight, Check } from 'lucide-react'
 import { AnimatedWorkflow } from './AnimatedWorkflow'
 import type { Workflow } from '@/data/workflows'
 
+function WorkflowPreview({ workflow }: { workflow: Workflow }) {
+  const [imgFailed, setImgFailed] = useState(false)
+  const src = `/workflows/${workflow.id}.png`
+
+  if (imgFailed) {
+    return (
+      <div className="p-4 bg-dark/40">
+        <AnimatedWorkflow accentColor={workflow.accentColor} />
+      </div>
+    )
+  }
+
+  return (
+    <div className="relative overflow-hidden bg-dark/60" style={{ height: '180px' }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt={`${workflow.title} workflow screenshot`}
+        className="w-full h-full object-cover object-left-top transition-transform duration-500 group-hover:scale-105"
+        onError={() => setImgFailed(true)}
+      />
+      {/* subtle accent tint overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: `linear-gradient(to bottom, transparent 50%, ${workflow.accentColor}18 100%)` }}
+      />
+    </div>
+  )
+}
+
 interface WorkflowCardProps {
   workflow: Workflow
 }
@@ -16,14 +46,12 @@ export function WorkflowCard({ workflow }: WorkflowCardProps) {
     <>
       {/* Card */}
       <motion.div
-        className="glass rounded-2xl overflow-hidden flex flex-col"
+        className="glass rounded-2xl overflow-hidden flex flex-col group"
         whileHover={{ y: -4 }}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
-        {/* Animated workflow placeholder */}
-        <div className="p-4 bg-dark/40">
-          <AnimatedWorkflow accentColor={workflow.accentColor} />
-        </div>
+        {/* Workflow preview — real screenshot or animated fallback */}
+        <WorkflowPreview workflow={workflow} />
 
         {/* Card body */}
         <div className="p-5 flex flex-col gap-3 flex-1">
