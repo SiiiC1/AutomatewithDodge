@@ -1,8 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Moon, Sun } from 'lucide-react'
-import { useTheme } from 'next-themes'
+import { Menu, X } from 'lucide-react'
 
 const NAV_LINKS = [
   { label: 'About', href: '#about' },
@@ -15,11 +14,7 @@ const NAV_LINKS = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
   useEffect(() => {
-    setMounted(true)
     const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
@@ -60,17 +55,6 @@ export function Navbar() {
 
           {/* Right actions */}
           <div className="flex items-center gap-3">
-            {/* Dark mode toggle */}
-            {mounted && (
-              <button
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="p-2 rounded-lg text-light/60 hover:text-primary transition-colors"
-                aria-label="Toggle theme"
-              >
-                {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-              </button>
-            )}
-
             {/* CTA */}
             <motion.button
               onClick={() => handleNavClick('#contact')}
