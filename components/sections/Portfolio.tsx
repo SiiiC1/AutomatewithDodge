@@ -41,15 +41,6 @@ export function Portfolio() {
           ))}
         </div>
 
-        {/* Screenshot note */}
-        <motion.p
-          className="text-center text-xs text-light/30 mt-8 italic"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.6 }}
-        >
-          Workflow screenshots coming soon — animated placeholders shown above
-        </motion.p>
       </div>
     </section>
   )
