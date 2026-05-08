@@ -18,7 +18,7 @@ export function Tools() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
-          className="text-center mb-14"
+          className="text-center mb-8"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
@@ -33,7 +33,7 @@ export function Tools() {
         </motion.div>
 
         {/* Categories */}
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-6">
           {toolCategories.map((category, catIdx) => {
             const categoryTools = tools.filter((t) => t.category === category)
             const catColor = CATEGORY_COLORS[category]
@@ -61,7 +61,7 @@ export function Tools() {
                 </div>
 
                 {/* Tool grid */}
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
+                <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-2">
                   {categoryTools.map((tool, i) => (
                     <motion.div
                       key={tool.id}
