@@ -4,6 +4,69 @@ import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { tools } from '@/data/tools'
 import type { Tool } from '@/data/tools'
 
+const TOOL_LOGOS: Record<string, string> = {
+  'openai':           'https://cdn.simpleicons.org/openai',
+  'claude':           'https://cdn.simpleicons.org/anthropic',
+  'claude-code':      'https://cdn.simpleicons.org/anthropic',
+  'elevenlabs':       'https://cdn.simpleicons.org/elevenlabs',
+  'vapi':             'https://cdn.simpleicons.org/vapi',
+  'n8n':              'https://cdn.simpleicons.org/n8n',
+  'make':             'https://cdn.simpleicons.org/make',
+  'zapier':           'https://cdn.simpleicons.org/zapier',
+  'ghl':              'https://cdn.simpleicons.org/gohighlevel',
+  'zoho':             'https://cdn.simpleicons.org/zoho',
+  'apollo':           'https://cdn.simpleicons.org/apollo',
+  'airtable':         'https://cdn.simpleicons.org/airtable',
+  'notion':           'https://cdn.simpleicons.org/notion/ffffff',
+  'supabase':         'https://cdn.simpleicons.org/supabase',
+  'jira':             'https://cdn.simpleicons.org/jira',
+  'asana':            'https://cdn.simpleicons.org/asana',
+  'slack':            'https://cdn.simpleicons.org/slack',
+  'whatsapp':         'https://cdn.simpleicons.org/whatsapp',
+  'twilio':           'https://cdn.simpleicons.org/twilio',
+  'zoom':             'https://cdn.simpleicons.org/zoom',
+  'google-workspace': 'https://cdn.simpleicons.org/google',
+  'meta-api':         'https://cdn.simpleicons.org/meta',
+  'github':           'https://cdn.simpleicons.org/github/ffffff',
+  'cursor':           'https://cdn.simpleicons.org/cursor',
+  'wordpress':        'https://cdn.simpleicons.org/wordpress',
+  'ahrefs':           'https://cdn.simpleicons.org/ahrefs',
+  'xero':             'https://cdn.simpleicons.org/xero',
+}
+
+function ToolLogo({ tool }: { tool: Tool }) {
+  const [failed, setFailed] = useState(false)
+  const logoUrl = TOOL_LOGOS[tool.id]
+
+  if (!logoUrl || failed) {
+    return (
+      <div
+        className="w-7 h-7 rounded-md flex items-center justify-center text-[10px] font-bold font-heading flex-shrink-0"
+        style={{ backgroundColor: `${tool.color}22`, color: tool.color }}
+      >
+        {tool.abbr}
+      </div>
+    )
+  }
+
+  return (
+    <div
+      className="w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0 p-1"
+      style={{ backgroundColor: `${tool.color}22` }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={logoUrl}
+        alt={tool.name}
+        width={20}
+        height={20}
+        className="w-full h-full object-contain"
+        onError={() => setFailed(true)}
+      />
+    </div>
+  )
+}
+
 function MarqueeCard({ tool }: { tool: Tool }) {
   const [hovered, setHovered] = useState(false)
 
@@ -15,13 +78,7 @@ function MarqueeCard({ tool }: { tool: Tool }) {
       whileHover={{ y: -3 }}
       transition={{ type: 'spring', stiffness: 400, damping: 20 }}
     >
-      {/* Icon badge */}
-      <div
-        className="w-7 h-7 rounded-md flex items-center justify-center text-[10px] font-bold font-heading flex-shrink-0"
-        style={{ backgroundColor: `${tool.color}22`, color: tool.color }}
-      >
-        {tool.abbr}
-      </div>
+      <ToolLogo tool={tool} />
       <span className="text-xs font-medium text-light/80 whitespace-nowrap">{tool.name}</span>
 
       {/* Hover tooltip */}
@@ -74,7 +131,6 @@ export function Tools() {
       style={{ background: 'linear-gradient(180deg, #0A1628 0%, #0d1e36 100%)' }}
     >
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <motion.div
           className="text-center mb-10"
           initial={{ opacity: 0, y: 30 }}
@@ -98,7 +154,6 @@ export function Tools() {
         animate={isInView ? { opacity: 1 } : {}}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        {/* Left + right fade masks */}
         <div
           className="absolute inset-y-0 left-0 w-24 z-10 pointer-events-none"
           style={{ background: 'linear-gradient(to right, #0A1628, transparent)' }}
