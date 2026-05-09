@@ -23,7 +23,8 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+      className="relative flex flex-col items-center justify-center overflow-hidden"
+      style={{ minHeight: '100svh' }}
     >
       {/* Radial gradient overlay */}
       <div

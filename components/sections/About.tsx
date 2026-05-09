@@ -7,8 +7,8 @@ import { StatCard } from '@/components/ui/StatCard'
 const highlights = [
   { icon: Zap, text: 'Automated workflows for data capture, processing, and routing' },
   { icon: GitBranch, text: 'Designed integrated systems across multiple platforms' },
-  { icon: Brain, text: 'Built AI-driven automation for support and response systems' },
-  { icon: ArrowRight, text: 'Created end-to-end process automation across diverse use cases' },
+  { icon: Brain, text: 'Built AI-driven support and response workflows' },
+  { icon: ArrowRight, text: 'Created end-to-end automations for diverse business operations' },
 ]
 
 const stats = [
@@ -40,6 +40,9 @@ export function About() {
           <h2 className="font-heading text-h2 text-light leading-tight max-w-3xl mx-auto">
             Building <span className="text-secondary">smarter systems</span> that run your business on autopilot
           </h2>
+          <p className="text-light/50 text-sm mt-4 max-w-xl mx-auto leading-relaxed">
+            I build automation systems that simplify operations, connect tools, and help businesses scale efficiently.
+          </p>
         </motion.div>
 
         {/* Main grid: identity card + content */}
@@ -134,7 +137,10 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p className="text-light/70 leading-relaxed text-base">
-              I design AI-powered automation systems that streamline workflows, reduce manual work, and improve efficiency across different industries and use cases. With 1 year of hands-on experience in automation, I build practical and scalable systems designed for real-world execution.
+              I build automation systems that simplify operations, connect tools, and help businesses scale efficiently. My focus is creating practical workflows that solve real operational bottlenecks — from lead management and support systems to data processing and internal operations.
+            </p>
+            <p className="text-light/60 leading-relaxed text-sm">
+              Over the past year, I&apos;ve worked with platforms like n8n, Make, Zapier, OpenAI, and GoHighLevel to develop scalable automations built for real-world execution.
             </p>
 
             {/* Highlight cards */}
@@ -171,7 +177,7 @@ export function About() {
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.8 }}
             >
-              My mission: eliminate repetitive work so teams can focus on growth instead of manual tasks.
+              My mission: eliminate repetitive operational work so teams can focus on growth, strategy, and execution.
             </motion.div>
           </motion.div>
         </div>
