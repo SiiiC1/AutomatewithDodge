@@ -35,7 +35,7 @@ export function Process() {
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="process" ref={ref} className="section-padding bg-dark">
+    <section id="process" ref={ref} className="section-padding">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div

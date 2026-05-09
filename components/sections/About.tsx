@@ -27,7 +27,7 @@ export function About() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="about" ref={ref} className="section-padding bg-dark">
+    <section id="about" ref={ref} className="section-padding">
       <div className="max-w-6xl mx-auto">
         <motion.div
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center"

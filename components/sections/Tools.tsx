@@ -128,7 +128,7 @@ export function Tools() {
       id="tools"
       ref={ref}
       className="section-padding overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, #0A1628 0%, #0d1e36 100%)' }}
+      style={{ background: 'transparent' }}
     >
       <div className="max-w-6xl mx-auto">
         <motion.div
@@ -156,11 +156,11 @@ export function Tools() {
       >
         <div
           className="absolute inset-y-0 left-0 w-24 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to right, #0A1628, transparent)' }}
+          style={{ background: 'linear-gradient(to right, #0A1628aa, transparent)' }}
         />
         <div
           className="absolute inset-y-0 right-0 w-24 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to left, #0A1628, transparent)' }}
+          style={{ background: 'linear-gradient(to left, #0A1628aa, transparent)' }}
         />
 
         <MarqueeRow items={row1} direction="left" />

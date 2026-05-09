@@ -9,7 +9,7 @@ export function Portfolio() {
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="work" ref={ref} className="section-padding bg-dark">
+    <section id="work" ref={ref} className="section-padding">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div

@@ -8,7 +8,7 @@ const SOCIALS = [
 
 export function Footer() {
   return (
-    <footer style={{ borderTop: '1px solid #1E3A5F' }} className="py-8 px-6 bg-dark">
+    <footer style={{ borderTop: '1px solid #1E3A5F' }} className="py-8 px-6">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <a href="#home" className="font-heading font-bold text-xl text-light">
           Dodge<span className="text-primary">.</span>

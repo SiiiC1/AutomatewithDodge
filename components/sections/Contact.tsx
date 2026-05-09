@@ -54,7 +54,7 @@ export function Contact() {
     'w-full bg-mid/30 border border-mid rounded-xl px-4 py-3 text-sm text-light placeholder-light/30 focus:outline-none focus:border-primary transition-colors duration-200'
 
   return (
-    <section id="contact" ref={ref} className="section-padding bg-dark">
+    <section id="contact" ref={ref} className="section-padding">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div

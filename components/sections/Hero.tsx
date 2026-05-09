@@ -1,7 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-import { NetworkCanvas } from '@/components/ui/NetworkCanvas'
 
 const containerVariants = {
   hidden: {},
@@ -24,11 +23,8 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-dark"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
     >
-      {/* Animated background */}
-      <NetworkCanvas />
-
       {/* Radial gradient overlay */}
       <div
         className="absolute inset-0 pointer-events-none"

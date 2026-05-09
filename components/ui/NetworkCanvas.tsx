@@ -20,8 +20,8 @@ export function NetworkCanvas() {
     if (!ctx) return
 
     const COLOR = '0, 217, 255'
-    const COUNT = 55
-    const MAX_DIST = 140
+    const COUNT = 90
+    const MAX_DIST = 160
     let animId: number
     const particles: Particle[] = []
 
@@ -31,16 +31,20 @@ export function NetworkCanvas() {
     }
     resize()
 
-    for (let i = 0; i < COUNT; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
-        radius: Math.random() * 1.5 + 0.8,
-        alpha: Math.random() * 0.4 + 0.15,
-      })
+    const initParticles = () => {
+      particles.length = 0
+      for (let i = 0; i < COUNT; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          radius: Math.random() * 1.8 + 0.6,
+          alpha: Math.random() * 0.5 + 0.2,
+        })
+      }
     }
+    initParticles()
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -66,8 +70,8 @@ export function NetworkCanvas() {
             ctx.beginPath()
             ctx.moveTo(particles[i].x, particles[i].y)
             ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.strokeStyle = `rgba(${COLOR}, ${0.12 * (1 - dist / MAX_DIST)})`
-            ctx.lineWidth = 0.5
+            ctx.strokeStyle = `rgba(${COLOR}, ${0.15 * (1 - dist / MAX_DIST)})`
+            ctx.lineWidth = 0.6
             ctx.stroke()
           }
         }
@@ -77,7 +81,11 @@ export function NetworkCanvas() {
     }
 
     draw()
-    const onResize = () => resize()
+
+    const onResize = () => {
+      resize()
+      initParticles()
+    }
     window.addEventListener('resize', onResize)
 
     return () => {
@@ -89,7 +97,8 @@ export function NetworkCanvas() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none opacity-70"
+      className="fixed inset-0 w-full h-full pointer-events-none"
+      style={{ zIndex: 0 }}
       aria-hidden="true"
     />
   )

@@ -21,7 +21,7 @@ export function Differentiators() {
       id="why"
       ref={ref}
       className="section-padding"
-      style={{ background: 'linear-gradient(180deg, #0d1e36 0%, #0A1628 100%)' }}
+      style={{ background: 'transparent' }}
     >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
