@@ -70,31 +70,6 @@ export function About() {
                 style={{ background: 'radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%)' }}
               />
 
-              {/* Initials ring */}
-              <div className="relative">
-                <motion.div
-                  className="w-24 h-24 rounded-full flex items-center justify-center relative"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(0,217,255,0.15), rgba(124,58,237,0.15))',
-                    border: '1.5px solid rgba(0,217,255,0.3)',
-                  }}
-                  animate={{ boxShadow: ['0 0 0px rgba(0,217,255,0)', '0 0 24px rgba(0,217,255,0.3)', '0 0 0px rgba(0,217,255,0)'] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                >
-                  <span
-                    className="font-heading font-bold text-4xl"
-                    style={{ background: 'linear-gradient(135deg, #00D9FF, #7C3AED)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
-                  >
-                    D
-                  </span>
-                </motion.div>
-                {/* Online dot */}
-                <span
-                  className="absolute bottom-1 right-1 w-3.5 h-3.5 rounded-full border-2"
-                  style={{ background: '#10B981', borderColor: '#0A1628' }}
-                />
-              </div>
-
               <div>
                 <p className="font-heading font-semibold text-light text-lg leading-tight">Dodge</p>
                 <p className="text-xs text-primary tracking-widest uppercase mt-1">Automation Specialist</p>
@@ -114,11 +89,12 @@ export function About() {
               </div>
             </div>
 
-            {/* Stat cards stacked */}
-            <div className="grid grid-cols-3 gap-3">
+            {/* Stat cards — equal width and height */}
+            <div className="grid grid-cols-3 gap-3 items-stretch">
               {stats.map((s, i) => (
                 <motion.div
                   key={s.label}
+                  className="flex"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}

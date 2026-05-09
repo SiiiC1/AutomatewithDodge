@@ -40,7 +40,7 @@ export function StatCard({ value, label }: StatCardProps) {
   return (
     <div
       ref={ref}
-      className="glass rounded-xl p-4 text-center flex flex-col items-center gap-1 min-w-[90px]"
+      className="glass rounded-xl p-4 text-center flex flex-col items-center justify-center gap-1 w-full h-full"
     >
       <span className="text-2xl font-bold font-heading text-accent">
         {prefix}{count}{suffix}
