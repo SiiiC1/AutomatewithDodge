@@ -40,7 +40,7 @@ export function About() {
             {/* Hexagonal photo frame */}
             <div className="relative">
               <div
-                className="w-48 h-48 overflow-hidden"
+                className="w-72 h-72 overflow-hidden"
                 style={{
                   clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
                   border: '2px solid rgba(0,217,255,0.3)',
@@ -87,9 +87,7 @@ export function About() {
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              I specialize in AI-powered automation for logistics, sales operations, and customer
-              workflows. With 1 year focused on small business automation, I build systems that
-              actually work.
+              I design AI-powered automation systems that streamline workflows, reduce manual work, and improve efficiency across different industries and use cases. With 1 year of hands-on experience in automation, I build practical and scalable systems designed for real-world execution.
             </motion.p>
 
             {/* Highlight list */}
