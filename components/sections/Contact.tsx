@@ -1,7 +1,7 @@
 'use client'
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Mail, ExternalLink, Calendar, Loader2, MessageCircle } from 'lucide-react'
+import { Mail, ExternalLink, Loader2, MessageCircle } from 'lucide-react'
 
 const PROJECT_TYPES = [
   'Workflow Automation',
@@ -73,37 +73,23 @@ export function Contact() {
         </motion.div>
 
 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Left: Calendly placeholder */}
+          {/* Left: Calendly inline embed */}
           <motion.div
-            className="glass rounded-2xl p-8 flex flex-col items-center justify-center gap-5 min-h-[360px]"
+            className="rounded-2xl overflow-hidden"
+            style={{ border: '1px solid rgba(0,217,255,0.2)' }}
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <div
-              className="w-16 h-16 rounded-2xl flex items-center justify-center"
-              style={{ backgroundColor: 'rgba(0,217,255,0.1)' }}
-            >
-              <Calendar size={32} className="text-primary" />
+            <div className="px-4 py-3" style={{ background: '#0d1e36', borderBottom: '1px solid rgba(0,217,255,0.15)' }}>
+              <p className="text-xs font-medium text-primary tracking-widest uppercase">Book a Free Call</p>
             </div>
-            <div className="text-center">
-              <h3 className="font-heading font-semibold text-light text-lg mb-1">
-                Book a 30-min Consultation
-              </h3>
-              <p className="text-sm text-light/50">
-                Select a time that works for you — free, no commitment.
-              </p>
-            </div>
-            <motion.a
-              href="https://calendly.com/dodge-siiic/30-minute-event-type"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 rounded-xl font-semibold text-dark bg-primary text-sm"
-              whileHover={{ scale: 1.04, boxShadow: '0 0 24px rgba(0,217,255,0.35)' }}
-              whileTap={{ scale: 0.97 }}
-            >
-              Select a Time
-            </motion.a>
+            <iframe
+              src="https://calendly.com/dodge-siiic/30-minute-event-type?embed_type=Inline&hide_gdpr_banner=1&hide_event_type_details=1"
+              width="100%"
+              height="560"
+              style={{ border: 'none', display: 'block' }}
+            />
           </motion.div>
 
           {/* Right: Contact form */}
