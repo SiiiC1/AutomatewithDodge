@@ -4,6 +4,9 @@ import { About } from '@/components/sections/About'
 import { Tools } from '@/components/sections/Tools'
 import { Portfolio } from '@/components/sections/Portfolio'
 import { Differentiators } from '@/components/sections/Differentiators'
+import { Process } from '@/components/sections/Process'
+import { Contact } from '@/components/sections/Contact'
+import { Footer } from '@/components/Footer'
 
 export default function Home() {
   return (
@@ -14,6 +17,9 @@ export default function Home() {
       <Tools />
       <Portfolio />
       <Differentiators />
+      <Process />
+      <Contact />
+      <Footer />
     </main>
   )
 }

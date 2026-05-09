@@ -1443,9 +1443,9 @@ import { motion, useInView } from 'framer-motion'
 import { StatCard } from '@/components/ui/StatCard'
 
 const bio = [
-  'I design and deploy AI-powered automation systems using tools like n8n, Make.com, Zapier, and GoHighLevel, integrated with OpenAI and Claude APIs. With experience in logistics process operations and full-stack MERN development, I focus on building structured, reliable workflows that reduce manual work and improve operational efficiency across business systems.',
-  'My mission is to eliminate repetitive work by building simple, reliable automation systems that let businesses operate faster and smarter. I believe workflows should be fully connected and efficient so teams can focus on growth instead of manual tasks.',
-  'I have 1 year of experience building AI automation and workflow systems for small businesses and agencies, focusing on streamlining sales, operations, and customer support processes.',
+  'I design and deploy AI-powered automation systems that streamline workflows and eliminate repetitive work. Using platforms such as n8n, Make.com, Zapier, and GoHighLevel — integrated with OpenAI and Claude APIs — I build scalable, reliable systems that improve efficiency across operations, communication, and digital processes.',
+  'My mission is to build intelligent automation systems that simplify workflows, reduce manual effort, and create real operational impact.',
+  'Experience building AI-powered automation and workflow systems across diverse processes, workflows, and use cases.',
 ]
 
 const stats = [
@@ -1724,8 +1724,8 @@ export function Portfolio() {
           Workflow screenshots coming soon — animated placeholders shown above
         </motion.p>
       </div>
-    </section>
   )
+    </section>
 }
 ```
 

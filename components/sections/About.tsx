@@ -43,13 +43,14 @@ export function About() {
                 className="w-48 h-48 overflow-hidden"
                 style={{
                   clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
-                  background: 'linear-gradient(135deg, rgba(0,217,255,0.15), rgba(124,58,237,0.15))',
                   border: '2px solid rgba(0,217,255,0.3)',
                 }}
               >
-                <div className="w-full h-full flex items-center justify-center bg-mid/50 text-primary/40">
-                  <span className="text-4xl font-heading font-bold">D</span>
-                </div>
+                <img
+                  src="/avatar.png"
+                  alt="Dodge"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div
                 className="absolute inset-0 pointer-events-none"
