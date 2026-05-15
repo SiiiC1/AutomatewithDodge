@@ -17,6 +17,12 @@ export function VoiceflowChat() {
                 url: 'https://general-runtime.voiceflow.com',
                 voice: {
                   url: "https://runtime-api.voiceflow.com"
+                },
+                assistant: {
+                  stylesheet: "data:text/css;charset=utf-8," + encodeURIComponent(
+                    ".vfrc-chat-input--textarea, textarea { color: #F8FAFC !important; caret-color: #00D9FF !important; } " +
+                    ".vfrc-chat-input--textarea::placeholder, textarea::placeholder { color: rgba(248,250,252,0.4) !important; }"
+                  )
                 }
               });
             }
