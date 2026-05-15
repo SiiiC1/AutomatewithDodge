@@ -27,11 +27,12 @@ export function Portfolio() {
           </p>
         </motion.div>
 
-        {/* 2x2 grid */}
+        {/* grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {workflows.map((workflow, i) => (
             <motion.div
               key={workflow.id}
+              className="h-full"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}

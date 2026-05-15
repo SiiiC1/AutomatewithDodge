@@ -112,4 +112,28 @@ export const workflows: Workflow[] = [
       'Maintains searchable email history with response status tracking',
     ],
   },
+  {
+    id: 'lead-outreach',
+    title: 'AI-Powered Lead Generation Automation',
+    subtitle: 'From manual prospecting to a fully automated outreach pipeline — built for web design and marketing agencies',
+    accentColor: '#F43F5E',
+    results: [
+      { label: 'Saved per week', value: '15–20 hrs' },
+      { label: 'Outreach automated', value: '100%' },
+      { label: 'More leads processed', value: '3x' },
+    ],
+    problem:
+      'Finding quality leads for web design services is painfully slow. Agencies spend hours manually searching Google Maps, visiting websites one by one, guessing at contact emails, and writing cold outreach from scratch — only to send vague messages that get ignored. High-potential businesses with outdated websites are invisible without a systematic way to find and qualify them at scale.',
+    solution:
+      'A fully automated n8n pipeline triggered from Telegram — scrape local businesses from Google Maps via Apify, audit every website with AI-powered scoring across design, UX, SEO, mobile-friendliness, and performance, qualify leads as Hot / Warm / Cold, log everything to Google Sheets, and fire off personalized cold emails automatically. Zero manual effort after the initial trigger.',
+    steps: [
+      'Scrapes Google Maps by niche, city, and keyword — capturing name, website, phone, reviews, rating, and address',
+      'AI audits each website for design quality, mobile responsiveness, SEO, UX, branding, and performance — producing a scored report',
+      'Flags businesses with no website, outdated design, weak branding, or poor mobile experience as high-priority targets',
+      'Automatically qualifies leads into Hot / Warm / Cold tiers with routing rules, then logs each to Google Sheets in real time',
+      'Discovers contact emails via HTML parsing, Hunter.io lookup, and pattern guessing — with a manual call list fallback',
+      'Sends AI-personalized cold emails per tier — referencing specific audit findings for each business',
+      'Fully triggered via Telegram — runs the entire pipeline end-to-end on demand',
+    ],
+  },
 ]

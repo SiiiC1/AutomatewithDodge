@@ -105,7 +105,7 @@ export function WorkflowCard({ workflow }: WorkflowCardProps) {
     <>
       {/* Card */}
       <motion.div
-        className="glass rounded-2xl overflow-hidden flex flex-col group"
+        className="glass rounded-2xl overflow-hidden flex flex-col group h-full"
         whileHover={{ y: -4 }}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
