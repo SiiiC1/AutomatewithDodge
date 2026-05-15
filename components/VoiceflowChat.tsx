@@ -17,14 +17,30 @@ export function VoiceflowChat() {
                 url: 'https://general-runtime.voiceflow.com',
                 voice: {
                   url: "https://runtime-api.voiceflow.com"
-                },
-                assistant: {
-                  stylesheet: "data:text/css;charset=utf-8," + encodeURIComponent(
-                    ".vfrc-chat-input--textarea, textarea { color: #F8FAFC !important; caret-color: #00D9FF !important; } " +
-                    ".vfrc-chat-input--textarea::placeholder, textarea::placeholder { color: rgba(248,250,252,0.4) !important; }"
-                  )
                 }
               });
+
+              var observer = new MutationObserver(function() {
+                var host = document.querySelector('vf-chat-widget');
+                if (host && host.shadowRoot) {
+                  var style = host.shadowRoot.querySelector('#vf-input-fix');
+                  if (!style) {
+                    style = document.createElement('style');
+                    style.id = 'vf-input-fix';
+                    style.textContent = [
+                      'textarea, input {',
+                      '  color: #F8FAFC !important;',
+                      '  caret-color: #00D9FF !important;',
+                      '  -webkit-text-fill-color: #F8FAFC !important;',
+                      '}'
+                    ].join('');
+                    host.shadowRoot.appendChild(style);
+                  }
+                  observer.disconnect();
+                }
+              });
+
+              observer.observe(document.body, { childList: true, subtree: true });
             }
             v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs";
             v.type = "text/javascript";
