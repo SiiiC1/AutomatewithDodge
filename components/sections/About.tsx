@@ -57,17 +57,11 @@ export function About() {
           >
             {/* Avatar card */}
             <div
-              className="glass rounded-2xl overflow-hidden relative"
-              style={{ border: '1px solid rgba(0,217,255,0.15)' }}
+              className="rounded-2xl overflow-hidden relative"
+              style={{ border: '1px solid rgba(0,217,255,0.1)', background: 'rgba(0,0,0,0.08)' }}
             >
-              {/* Ambient glow behind photo */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{ background: 'radial-gradient(ellipse at 50% 80%, rgba(0,217,255,0.08) 0%, transparent 70%)' }}
-              />
-
-              {/* Photo */}
-              <div className="relative w-full" style={{ aspectRatio: '3/4' }}>
+              {/* Photo — constrained height so it doesn't feel massive */}
+              <div className="relative w-full" style={{ aspectRatio: '3/4', maxHeight: '340px' }}>
                 <Image
                   src="/avatar.png"
                   alt="Dodge — Automation Specialist"
@@ -75,10 +69,10 @@ export function About() {
                   className="object-cover object-top"
                   priority
                 />
-                {/* subtle bottom fade to blend into the badge */}
+                {/* bottom fade for badge readability */}
                 <div
-                  className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
-                  style={{ background: 'linear-gradient(to top, rgba(8,8,18,0.7) 0%, transparent 100%)' }}
+                  className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
+                  style={{ background: 'linear-gradient(to top, rgba(4,6,16,0.6) 0%, transparent 100%)' }}
                 />
               </div>
 
@@ -86,7 +80,7 @@ export function About() {
               <div className="absolute bottom-4 left-0 right-0 flex justify-center">
                 <span
                   className="flex items-center gap-2 text-xs font-medium text-light/90 px-4 py-2 rounded-full backdrop-blur-md"
-                  style={{ background: 'rgba(8,8,18,0.65)', border: '1px solid rgba(255,255,255,0.1)' }}
+                  style={{ background: 'rgba(4,6,16,0.55)', border: '1px solid rgba(255,255,255,0.08)' }}
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
                   Based in Philippines · Working Globally
