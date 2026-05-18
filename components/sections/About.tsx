@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Zap, GitBranch, Brain, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
-import { StatCard } from '@/components/ui/StatCard'
+
 
 const highlights = [
   { icon: Zap, text: 'Automated workflows for data capture, processing, and routing' },
@@ -55,57 +55,61 @@ export function About() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            {/* Avatar card — gradient border wrapper */}
+            {/* Unified avatar + stats card */}
             <div
               className="rounded-2xl p-px"
-              style={{ background: 'linear-gradient(to bottom, rgba(0,217,255,0.18) 0%, transparent 60%)' }}
+              style={{ background: 'linear-gradient(to bottom, rgba(0,217,255,0.18) 0%, transparent 65%)' }}
             >
-            <div
-              className="rounded-2xl overflow-hidden relative"
-              style={{ background: 'rgba(0,0,0,0.08)' }}
-            >
-              {/* Photo — constrained height so it doesn't feel massive */}
-              <div className="relative w-full" style={{ aspectRatio: '3/4', maxHeight: '340px' }}>
-                <Image
-                  src="/avatar.png"
-                  alt="Dodge — Automation Specialist"
-                  fill
-                  className="object-cover object-top"
-                  priority
-                />
-                {/* bottom fade for badge readability */}
+              <div
+                className="rounded-2xl overflow-hidden flex flex-col"
+                style={{ background: 'rgba(4,6,16,0.4)' }}
+              >
+                {/* Photo — square crop shows face + upper body */}
+                <div className="relative w-full" style={{ aspectRatio: '1/1' }}>
+                  <Image
+                    src="/avatar.png"
+                    alt="Dodge — Automation Specialist"
+                    fill
+                    className="object-cover object-top"
+                    priority
+                  />
+                  {/* bottom fade for badge */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
+                    style={{ background: 'linear-gradient(to top, rgba(4,6,16,0.75) 0%, transparent 100%)' }}
+                  />
+                  {/* Location badge */}
+                  <div className="absolute bottom-3 left-0 right-0 flex justify-center">
+                    <span
+                      className="flex items-center gap-2 text-xs font-medium text-light/90 px-3 py-1.5 rounded-full backdrop-blur-md"
+                      style={{ background: 'rgba(4,6,16,0.6)', border: '1px solid rgba(255,255,255,0.08)' }}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
+                      Based in Philippines · Working Globally
+                    </span>
+                  </div>
+                </div>
+
+                {/* Stats row — same card, below the photo */}
                 <div
-                  className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
-                  style={{ background: 'linear-gradient(to top, rgba(4,6,16,0.6) 0%, transparent 100%)' }}
-                />
-              </div>
-
-              {/* Location badge pinned at the bottom */}
-              <div className="absolute bottom-4 left-0 right-0 flex justify-center">
-                <span
-                  className="flex items-center gap-2 text-xs font-medium text-light/90 px-4 py-2 rounded-full backdrop-blur-md"
-                  style={{ background: 'rgba(4,6,16,0.55)', border: '1px solid rgba(255,255,255,0.08)' }}
+                  className="grid grid-cols-3"
+                  style={{ borderTop: '1px solid rgba(0,217,255,0.08)' }}
                 >
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
-                  Based in Philippines · Working Globally
-                </span>
+                  {stats.map((s, i) => (
+                    <motion.div
+                      key={s.label}
+                      className="flex flex-col items-center justify-center py-5 px-2 text-center"
+                      style={i < stats.length - 1 ? { borderRight: '1px solid rgba(0,217,255,0.08)' } : {}}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
+                    >
+                      <span className="text-xl font-bold font-heading text-primary leading-none">{s.value}</span>
+                      <span className="text-[10px] text-light/50 mt-1.5 leading-tight">{s.label}</span>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-            </div>
-            </div>
-
-            {/* Stat cards — equal width and height */}
-            <div className="grid grid-cols-3 gap-3 items-stretch">
-              {stats.map((s, i) => (
-                <motion.div
-                  key={s.label}
-                  className="flex"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
-                >
-                  <StatCard value={s.value} label={s.label} />
-                </motion.div>
-              ))}
             </div>
           </motion.div>
 
