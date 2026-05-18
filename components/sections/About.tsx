@@ -12,12 +12,6 @@ const highlights = [
   { icon: ArrowRight, text: 'Created end-to-end automations for diverse business operations' },
 ]
 
-const stats = [
-  { value: '20+', label: 'Workflows Deployed' },
-  { value: '80+', label: 'Hours Saved' },
-  { value: '~40%', label: 'Efficiency Gains' },
-]
-
 
 export function About() {
   const ref = useRef<HTMLElement>(null)
@@ -90,25 +84,6 @@ export function About() {
                   </div>
                 </div>
 
-                {/* Stats row — same card, below the photo */}
-                <div
-                  className="grid grid-cols-3"
-                  style={{ borderTop: '1px solid rgba(0,217,255,0.08)' }}
-                >
-                  {stats.map((s, i) => (
-                    <motion.div
-                      key={s.label}
-                      className="flex flex-col items-center justify-center py-5 px-2 text-center"
-                      style={i < stats.length - 1 ? { borderRight: '1px solid rgba(0,217,255,0.08)' } : {}}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={isInView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
-                    >
-                      <span className="text-xl font-bold font-heading text-primary leading-none">{s.value}</span>
-                      <span className="text-[10px] text-light/50 mt-1.5 leading-tight">{s.label}</span>
-                    </motion.div>
-                  ))}
-                </div>
               </div>
             </div>
           </motion.div>
