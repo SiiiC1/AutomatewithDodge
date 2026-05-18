@@ -35,10 +35,10 @@ export function CursorGlow() {
       aria-hidden
       className="pointer-events-none fixed top-0 left-0 z-50"
       style={{
-        width: 600,
-        height: 600,
-        marginLeft: -300,
-        marginTop: -300,
+        width: 280,
+        height: 280,
+        marginLeft: -140,
+        marginTop: -140,
         borderRadius: '50%',
         background: 'radial-gradient(circle, rgba(0,217,255,0.055) 0%, rgba(0,217,255,0.018) 35%, transparent 70%)',
         opacity: 0,
