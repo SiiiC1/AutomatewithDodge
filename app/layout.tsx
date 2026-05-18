@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Space_Grotesk } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 import { NetworkCanvas } from '@/components/ui/NetworkCanvas'
+import { CursorGlow } from '@/components/ui/CursorGlow'
 import './globals.css'
 
 const inter = Inter({
@@ -41,6 +42,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <NetworkCanvas />
+          <CursorGlow />
           <div style={{ position: 'relative', zIndex: 1 }}>
             {children}
           </div>
