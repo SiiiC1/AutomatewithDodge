@@ -5,15 +5,15 @@ import { tools } from '@/data/tools'
 import type { Tool } from '@/data/tools'
 
 const TOOL_LOGOS: Record<string, string> = {
-  'openai':           'https://cdn.simpleicons.org/openai/ffffff',
-  'claude':           'https://cdn.simpleicons.org/anthropic',
-  'claude-code':      'https://cdn.simpleicons.org/anthropic',
+  'openai':           'https://img.logo.dev/openai.com?token=pk_OCHBJzrDRDO7R1LWkGPUMA',
+  'claude':           'https://img.logo.dev/claude.ai?token=pk_OCHBJzrDRDO7R1LWkGPUMA',
+  'claude-code':      'https://img.logo.dev/claude.ai?token=pk_OCHBJzrDRDO7R1LWkGPUMA',
   'elevenlabs':       'https://cdn.simpleicons.org/elevenlabs',
   // vapi — not in Simple Icons, falls back to abbr badge
   'n8n':              'https://cdn.simpleicons.org/n8n',
   'make':             'https://cdn.simpleicons.org/make',
   'zapier':           'https://cdn.simpleicons.org/zapier',
-  // ghl (GoHighLevel) — not in Simple Icons, falls back to abbr badge
+  'ghl':              'https://img.logo.dev/gohighlevel.com?token=pk_OCHBJzrDRDO7R1LWkGPUMA',
   'zoho':             'https://cdn.simpleicons.org/zoho',
   // apollo (apollo.io) — not in Simple Icons, falls back to abbr badge
   'airtable':         'https://cdn.simpleicons.org/airtable',
@@ -21,9 +21,9 @@ const TOOL_LOGOS: Record<string, string> = {
   'supabase':         'https://cdn.simpleicons.org/supabase',
   'jira':             'https://cdn.simpleicons.org/jira',
   'asana':            'https://cdn.simpleicons.org/asana',
-  'slack':            'https://cdn.simpleicons.org/slack/ffffff',
+  'slack':            'https://img.logo.dev/slack.com?token=pk_OCHBJzrDRDO7R1LWkGPUMA',
   'whatsapp':         'https://cdn.simpleicons.org/whatsapp',
-  'twilio':           'https://cdn.simpleicons.org/twilio/ffffff',
+  'twilio':           'https://img.logo.dev/twilio.com?token=pk_OCHBJzrDRDO7R1LWkGPUMA',
   'zoom':             'https://cdn.simpleicons.org/zoom',
   'google-workspace': 'https://cdn.simpleicons.org/google',
   'meta-api':         'https://cdn.simpleicons.org/meta',
