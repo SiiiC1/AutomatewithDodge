@@ -55,10 +55,14 @@ export function About() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            {/* Avatar card */}
+            {/* Avatar card — gradient border wrapper */}
+            <div
+              className="rounded-2xl p-px"
+              style={{ background: 'linear-gradient(to bottom, rgba(0,217,255,0.18) 0%, transparent 60%)' }}
+            >
             <div
               className="rounded-2xl overflow-hidden relative"
-              style={{ border: '1px solid rgba(0,217,255,0.1)', background: 'rgba(0,0,0,0.08)' }}
+              style={{ background: 'rgba(0,0,0,0.08)' }}
             >
               {/* Photo — constrained height so it doesn't feel massive */}
               <div className="relative w-full" style={{ aspectRatio: '3/4', maxHeight: '340px' }}>
@@ -86,6 +90,7 @@ export function About() {
                   Based in Philippines · Working Globally
                 </span>
               </div>
+            </div>
             </div>
 
             {/* Stat cards — equal width and height */}
