@@ -2,6 +2,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Zap, GitBranch, Brain, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 import { StatCard } from '@/components/ui/StatCard'
 
 const highlights = [
@@ -17,7 +18,6 @@ const stats = [
   { value: '~40%', label: 'Efficiency Gains' },
 ]
 
-const tools = ['n8n', 'Make.com', 'Zapier', 'OpenAI', 'GoHighLevel', 'Airtable']
 
 export function About() {
   const ref = useRef<HTMLElement>(null)
@@ -55,37 +55,42 @@ export function About() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            {/* Monogram card */}
+            {/* Avatar card */}
             <div
-              className="glass rounded-2xl p-8 flex flex-col items-center gap-4 text-center relative overflow-hidden"
+              className="glass rounded-2xl overflow-hidden relative"
               style={{ border: '1px solid rgba(0,217,255,0.15)' }}
             >
-              {/* Glow blob */}
+              {/* Ambient glow behind photo */}
               <div
-                className="absolute -top-12 -left-12 w-40 h-40 rounded-full pointer-events-none"
-                style={{ background: 'radial-gradient(circle, rgba(0,217,255,0.12) 0%, transparent 70%)' }}
-              />
-              <div
-                className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full pointer-events-none"
-                style={{ background: 'radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%)' }}
+                className="absolute inset-0 pointer-events-none"
+                style={{ background: 'radial-gradient(ellipse at 50% 80%, rgba(0,217,255,0.08) 0%, transparent 70%)' }}
               />
 
-              <div>
-                <p className="font-heading font-semibold text-light text-lg leading-tight">Dodge</p>
-                <p className="text-xs text-primary tracking-widest uppercase mt-1">Automation Specialist</p>
+              {/* Photo */}
+              <div className="relative w-full" style={{ aspectRatio: '3/4' }}>
+                <Image
+                  src="/avatar.png"
+                  alt="Dodge — Automation Specialist"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
+                {/* subtle bottom fade to blend into the badge */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
+                  style={{ background: 'linear-gradient(to top, rgba(8,8,18,0.7) 0%, transparent 100%)' }}
+                />
               </div>
 
-              {/* Tool chips */}
-              <div className="flex flex-wrap gap-2 justify-center pt-1">
-                {tools.map((tool) => (
-                  <span
-                    key={tool}
-                    className="text-[11px] px-2.5 py-1 rounded-full text-light/70 font-medium"
-                    style={{ background: 'rgba(0,217,255,0.07)', border: '1px solid rgba(0,217,255,0.12)' }}
-                  >
-                    {tool}
-                  </span>
-                ))}
+              {/* Location badge pinned at the bottom */}
+              <div className="absolute bottom-4 left-0 right-0 flex justify-center">
+                <span
+                  className="flex items-center gap-2 text-xs font-medium text-light/90 px-4 py-2 rounded-full backdrop-blur-md"
+                  style={{ background: 'rgba(8,8,18,0.65)', border: '1px solid rgba(255,255,255,0.1)' }}
+                >
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
+                  Based in Philippines · Working Globally
+                </span>
               </div>
             </div>
 
