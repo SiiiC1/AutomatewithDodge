@@ -113,6 +113,31 @@ export const workflows: Workflow[] = [
     ],
   },
   {
+    id: 'ai-receptionist',
+    title: 'Inbound Patient Intake System',
+    subtitle: 'From missed calls and cold leads to a fully automated 24/7 AI receptionist — zero staff required',
+    accentColor: '#06B6D4',
+    results: [
+      { label: 'Always-on availability', value: '24/7' },
+      { label: 'Response time to patients', value: '0 min' },
+      { label: 'Leads captured and logged', value: '100%' },
+    ],
+    problem:
+      'Dental clinics lose patients every day to unanswered calls and slow SMS replies. Receptionists juggle walk-ins, admin work, and phones all at once — appointment details get missed, leads go cold, and follow-ups never happen. Patients expect instant responses, especially outside office hours.',
+    solution:
+      'A fully automated AI-powered patient intake system that handles inbound calls via VAPI and SMS via Twilio — extracting patient details, routing leads, detecting missing info, and logging everything in real time. No human needed at the front desk.',
+    steps: [
+      'Answers inbound calls 24/7 with an AI voice agent',
+      'Handles inbound SMS and extracts booking details automatically',
+      'AI parses name, service, date and time from natural language',
+      'Routes new vs. existing patients — no duplicate records',
+      'Logs all patient records to a live CRM spreadsheet',
+      'Detects missing info and sends a follow-up SMS automatically',
+      'Updates records when patients reply with missing details',
+      'Sends a booking confirmation SMS once all details are captured',
+    ],
+  },
+  {
     id: 'lead-outreach',
     title: 'AI-Powered Lead Generation Automation',
     subtitle: 'From manual prospecting to a fully automated outreach pipeline — built for web design and marketing agencies',
