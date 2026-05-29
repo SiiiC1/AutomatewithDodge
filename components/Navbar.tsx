@@ -37,7 +37,7 @@ export function Navbar() {
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <a href="#home" className="font-heading font-bold text-xl text-light">
-            Dodge<span className="text-primary">.</span>
+            Automate with Dodge<span className="text-primary">.</span>
           </a>
 
           {/* Desktop links */}
