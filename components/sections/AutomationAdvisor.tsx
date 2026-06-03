@@ -463,6 +463,7 @@ export default function AutomationAdvisor() {
             >
               SiiiC
             </span>
+            {' - Automation Advisor'}
           </h2>
           <p className="text-light/60 text-base leading-relaxed max-w-xl mx-auto">
             Describe a repetitive workflow that costs your team time. SiiiC will analyze it
