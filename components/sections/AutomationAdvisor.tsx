@@ -455,18 +455,17 @@ export default function AutomationAdvisor() {
         >
           <p className="text-xs tracking-[0.3em] uppercase text-primary mb-3">Live Demo</p>
           <h2 className="font-heading text-h2 font-bold text-light mb-4">
-            Automation{' '}
             <span
               className="text-transparent bg-clip-text"
               style={{
                 backgroundImage: 'linear-gradient(135deg, #00D9FF 0%, #7C3AED 100%)',
               }}
             >
-              Advisor
+              SiiiC
             </span>
           </h2>
           <p className="text-light/60 text-base leading-relaxed max-w-xl mx-auto">
-            Describe a repetitive workflow that costs your team time. Claude will analyze it
+            Describe a repetitive workflow that costs your team time. SiiiC will analyze it
             and recommend the best automation approach — live, right here.
           </p>
         </motion.div>
@@ -578,14 +577,6 @@ export default function AutomationAdvisor() {
                   )}
                 </motion.button>
 
-                <div className="flex items-center justify-center gap-1.5">
-                  <Sparkles className="w-3 h-3 text-light/25" />
-                  <p className="text-center text-xs text-light/25">
-                    Powered by{' '}
-                    <span className="text-light/40 font-medium">OpenAI</span>
-                    {' '}via GPT-4o mini
-                  </p>
-                </div>
               </motion.form>
             ) : (
               <motion.div
@@ -643,15 +634,6 @@ export default function AutomationAdvisor() {
                   </div>
                 )}
 
-                <div
-                  className="flex items-center justify-center gap-1.5 pt-2 border-t"
-                  style={{ borderColor: 'rgba(0,217,255,0.06)' }}
-                >
-                  <Sparkles className="w-3 h-3 text-light/20" />
-                  <p className="text-xs text-light/20">
-                    Powered by <span className="text-light/30 font-medium">OpenAI</span> via GPT-4o mini
-                  </p>
-                </div>
               </motion.div>
             )}
           </AnimatePresence>
