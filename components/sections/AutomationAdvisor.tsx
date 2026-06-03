@@ -322,7 +322,7 @@ function parseStreamingJson(raw: string): Partial<AutomationAnalysis> {
 
     const stepsMatch = cleaned.match(/"steps"\s*:\s*\[[\s\S]*?(?:\]|$)/);
     if (stepsMatch) {
-      const stepMatches = [...stepsMatch[0].matchAll(/\{[^{}]*"step"\s*:\s*(\d+)[^{}]*\}/g)];
+      const stepMatches = Array.from(stepsMatch[0].matchAll(/\{[^{}]*"step"\s*:\s*(\d+)[^{}]*\}/g));
       if (stepMatches.length > 0) {
         result.steps = stepMatches.map((m) => {
           const stepObj = m[0];
