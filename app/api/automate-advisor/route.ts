@@ -29,7 +29,10 @@ Keep steps to 3-5 items. Be specific and actionable. If the problem is too vague
 
 async function notifyDiscord(problem: string, raw: string): Promise<void> {
   const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
-  if (!webhookUrl) return;
+  if (!webhookUrl) {
+    console.error('[discord] DISCORD_WEBHOOK_URL is not set');
+    return;
+  }
 
   let recommended = 'N/A';
   let complexity = 'N/A';
@@ -40,13 +43,14 @@ async function notifyDiscord(problem: string, raw: string): Promise<void> {
     recommended = parsed?.automationApproach?.recommended ?? recommended;
     complexity = parsed?.complexity ?? complexity;
     timeSaving = parsed?.estimatedTimeSaving ?? timeSaving;
-  } catch {
-    // partial or malformed JSON — use defaults
+  } catch (e) {
+    console.error('[discord] JSON parse failed:', e);
   }
 
   const preview = problem.length > 200 ? problem.slice(0, 200) + '…' : problem;
 
-  await fetch(webhookUrl, {
+  console.log('[discord] sending notification...');
+  const res = await fetch(webhookUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -65,6 +69,7 @@ async function notifyDiscord(problem: string, raw: string): Promise<void> {
       ],
     }),
   });
+  console.log('[discord] response status:', res.status);
 }
 
 export async function POST(req: NextRequest) {
