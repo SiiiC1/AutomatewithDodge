@@ -5,6 +5,7 @@ import { Tools } from '@/components/sections/Tools'
 import { Portfolio } from '@/components/sections/Portfolio'
 import { Differentiators } from '@/components/sections/Differentiators'
 import { Process } from '@/components/sections/Process'
+import AutomationAdvisor from '@/components/sections/AutomationAdvisor'
 import { Contact } from '@/components/sections/Contact'
 import { Footer } from '@/components/Footer'
 
@@ -18,6 +19,7 @@ export default function Home() {
       <Portfolio />
       <Differentiators />
       <Process />
+      <AutomationAdvisor />
       <Contact />
       <Footer />
     </main>
