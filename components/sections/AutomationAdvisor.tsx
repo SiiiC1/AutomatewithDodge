@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useInView, motion, AnimatePresence } from 'framer-motion';
 import {
   Zap,
@@ -12,6 +12,7 @@ import {
   AlertCircle,
   ArrowRight,
   RotateCcw,
+  TrendingDown,
 } from 'lucide-react';
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -34,42 +35,88 @@ interface AutomationAnalysis {
   complexity: 'Low' | 'Medium' | 'High';
   aiEnhancement: string;
   quickWin: string;
+  annualCost?: string;
 }
 
 // ── Sub-components ──────────────────────────────────────────────────────────
 
-const COMPLEXITY_COLORS: Record<string, string> = {
-  Low: 'text-accent border-accent/30 bg-accent/10',
-  Medium: 'text-primary border-primary/30 bg-primary/10',
-  High: 'text-secondary border-secondary/30 bg-secondary/10',
-};
+const COMPLEXITY_CONFIG = {
+  Low: { segments: 1, color: '#10B981' },
+  Medium: { segments: 2, color: '#F59E0B' },
+  High: { segments: 3, color: '#7C3AED' },
+} as const;
 
-function ComplexityBadge({ level }: { level: string }) {
+function ComplexityMeter({ level }: { level: string }) {
+  const cfg =
+    COMPLEXITY_CONFIG[level as keyof typeof COMPLEXITY_CONFIG] ?? { segments: 1, color: '#10B981' };
   return (
-    <span
-      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${
-        COMPLEXITY_COLORS[level] ?? 'text-light/60 border-mid bg-mid/40'
-      }`}
-    >
-      {level} Complexity
-    </span>
+    <div className="flex flex-col items-end gap-1.5">
+      <span className="text-xs text-light/40 uppercase tracking-widest">Complexity</span>
+      <div className="flex items-center gap-2">
+        <div className="flex gap-1.5">
+          {[1, 2, 3].map((i) => (
+            <motion.div
+              key={i}
+              className="w-5 h-2.5 rounded-sm"
+              initial={{ opacity: 0, scaleX: 0 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              style={{
+                backgroundColor: i <= cfg.segments ? cfg.color : 'rgba(255,255,255,0.08)',
+                transformOrigin: 'left',
+              }}
+              transition={{ duration: 0.4, delay: i * 0.12 }}
+            />
+          ))}
+        </div>
+        <span className="text-sm font-semibold" style={{ color: cfg.color }}>
+          {level}
+        </span>
+      </div>
+    </div>
   );
 }
 
-function StreamingText({ text }: { text: string }) {
+function TypewriterText({ text, speed = 18 }: { text: string; speed?: number }) {
+  const [displayed, setDisplayed] = useState('');
+  const prevRef = useRef('');
+
+  useEffect(() => {
+    if (!text || text === prevRef.current) return;
+    prevRef.current = text;
+
+    let i = 0;
+    const interval = setInterval(() => {
+      i++;
+      setDisplayed(text.slice(0, i));
+      if (i >= text.length) clearInterval(interval);
+    }, speed);
+
+    return () => clearInterval(interval);
+  }, [text, speed]);
+
+  const done = displayed.length >= text.length;
+
   return (
     <span>
-      {text}
-      <motion.span
-        className="inline-block w-0.5 h-3.5 ml-0.5 align-middle rounded-full bg-primary"
-        animate={{ opacity: [1, 0] }}
-        transition={{ duration: 0.6, repeat: Infinity, repeatType: 'reverse' }}
-      />
+      {displayed}
+      {!done && (
+        <motion.span
+          className="inline-block w-0.5 h-[1em] ml-0.5 align-middle rounded-full bg-primary"
+          animate={{ opacity: [1, 0] }}
+          transition={{ duration: 0.5, repeat: Infinity, repeatType: 'reverse' }}
+        />
+      )}
     </span>
   );
 }
 
-function ResultCard({ analysis, isStreaming }: { analysis: AutomationAnalysis; isStreaming: boolean }) {
+function ResultCard({
+  analysis,
+  isStreaming,
+}: {
+  analysis: AutomationAnalysis;
+  isStreaming: boolean;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -78,6 +125,37 @@ function ResultCard({ analysis, isStreaming }: { analysis: AutomationAnalysis; i
       transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
       className="space-y-5"
     >
+      {/* Cost-of-inaction callout */}
+      <AnimatePresence>
+        {analysis.annualCost && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="rounded-xl p-4 border flex items-start gap-3"
+            style={{
+              background: 'rgba(239,68,68,0.06)',
+              borderColor: 'rgba(239,68,68,0.28)',
+            }}
+          >
+            <TrendingDown className="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0" />
+            <div>
+              <p className="text-xs text-red-400/80 uppercase tracking-widest font-semibold mb-1">
+                Cost of Inaction
+              </p>
+              <p className="text-base font-bold text-red-300">
+                {"You're losing "}
+                <TypewriterText text={analysis.annualCost} speed={20} />
+                {' in manual work'}
+              </p>
+              <p className="text-xs text-light/40 mt-0.5">
+                Automate this and reclaim that value immediately.
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Summary banner */}
       <div
         className="rounded-xl p-4 border"
@@ -88,11 +166,15 @@ function ResultCard({ analysis, isStreaming }: { analysis: AutomationAnalysis; i
       >
         <p className="text-sm text-light/80 leading-relaxed">
           <span className="text-primary font-semibold">Analysis: </span>
-          {isStreaming && !analysis.automationApproach?.recommended ? (
-            <StreamingText text={analysis.summary} />
-          ) : (
-            analysis.summary
-          )}
+          {analysis.summary ? (
+            <TypewriterText text={analysis.summary} speed={10} />
+          ) : isStreaming ? (
+            <motion.span
+              className="inline-block w-0.5 h-3.5 ml-0.5 align-middle rounded-full bg-primary"
+              animate={{ opacity: [1, 0] }}
+              transition={{ duration: 0.6, repeat: Infinity, repeatType: 'reverse' }}
+            />
+          ) : null}
         </p>
       </div>
 
@@ -118,7 +200,7 @@ function ResultCard({ analysis, isStreaming }: { analysis: AutomationAnalysis; i
                   {analysis.automationApproach.recommended}
                 </p>
               </div>
-              {analysis.complexity && <ComplexityBadge level={analysis.complexity} />}
+              {analysis.complexity && <ComplexityMeter level={analysis.complexity} />}
             </div>
             {analysis.automationApproach.reasoning && (
               <p className="text-sm text-light/70 leading-relaxed">
@@ -255,11 +337,7 @@ function ResultCard({ analysis, isStreaming }: { analysis: AutomationAnalysis; i
                 Quick Win — Start Here
               </p>
               <p className="text-sm text-light/75">
-                {isStreaming ? (
-                  <StreamingText text={analysis.quickWin} />
-                ) : (
-                  analysis.quickWin
-                )}
+                <TypewriterText text={analysis.quickWin} speed={15} />
               </p>
             </div>
           </motion.div>
@@ -319,6 +397,9 @@ function parseStreamingJson(raw: string): Partial<AutomationAnalysis> {
     const quickWinMatch = cleaned.match(/"quickWin"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"/);
     if (quickWinMatch)
       result.quickWin = quickWinMatch[1].replace(/\\"/g, '"').replace(/\\n/g, '\n');
+
+    const annualCostMatch = cleaned.match(/"annualCost"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"/);
+    if (annualCostMatch) result.annualCost = annualCostMatch[1].replace(/\\"/g, '"');
 
     const stepsMatch = cleaned.match(/"steps"\s*:\s*\[[\s\S]*?(?:\]|$)/);
     if (stepsMatch) {
@@ -577,7 +658,6 @@ export default function AutomationAdvisor() {
                     </>
                   )}
                 </motion.button>
-
               </motion.form>
             ) : (
               <motion.div
@@ -634,7 +714,6 @@ export default function AutomationAdvisor() {
                     ))}
                   </div>
                 )}
-
               </motion.div>
             )}
           </AnimatePresence>

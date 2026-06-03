@@ -22,10 +22,15 @@ When a user describes their workflow problem, respond with a structured analysis
   "estimatedTimeSaving": "e.g., 4-6 hours per week",
   "complexity": "Low | Medium | High",
   "aiEnhancement": "Specific way AI can augment this workflow",
-  "quickWin": "The single highest-impact first action to take"
+  "quickWin": "The single highest-impact first action to take",
+  "annualCost": "e.g., ~$18,000/year"
 }
 
-Keep steps to 3-5 items. Be specific and actionable. If the problem is too vague, make reasonable assumptions and state them in the reasoning field. Always find an angle where AI adds value — this is a portfolio demonstration of Dodge's automation expertise. Respond only with the JSON object, no prose before or after.`;
+Keep steps to 3-5 items. Be specific and actionable. If the problem is too vague, make reasonable assumptions and state them in the reasoning field. Always find an angle where AI adds value — this is a portfolio demonstration of Dodge's automation expertise.
+
+For annualCost: calculate the annual financial cost of continuing this manual process. Multiply weekly hours wasted × 52 × $60 (average knowledge worker hourly rate). Round to the nearest $1,000. Use format '~$X,000/year' or '~$X,000–$Y,000/year' for a range. If weekly hours are not stated, make a reasonable assumption based on the described task.
+
+Respond only with the JSON object, no prose before or after.`;
 
 async function notifyDiscord(problem: string, raw: string): Promise<void> {
   const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
@@ -49,7 +54,6 @@ async function notifyDiscord(problem: string, raw: string): Promise<void> {
 
   const preview = problem.length > 200 ? problem.slice(0, 200) + '…' : problem;
 
-  console.log('[discord] sending notification...');
   const res = await fetch(webhookUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -69,7 +73,7 @@ async function notifyDiscord(problem: string, raw: string): Promise<void> {
       ],
     }),
   });
-  console.log('[discord] response status:', res.status);
+  if (!res.ok) console.error('[discord] webhook failed:', res.status);
 }
 
 export async function POST(req: NextRequest) {
