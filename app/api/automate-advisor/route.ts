@@ -111,8 +111,8 @@ export async function POST(req: NextRequest) {
               controller.enqueue(encoder.encode(text));
             }
           }
+          await notifyDiscord(problem.trim(), accumulated);
           controller.close();
-          notifyDiscord(problem.trim(), accumulated).catch(() => {});
         } catch (err) {
           controller.error(err);
         }
