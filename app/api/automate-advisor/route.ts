@@ -27,6 +27,46 @@ When a user describes their workflow problem, respond with a structured analysis
 
 Keep steps to 3-5 items. Be specific and actionable. If the problem is too vague, make reasonable assumptions and state them in the reasoning field. Always find an angle where AI adds value — this is a portfolio demonstration of Dodge's automation expertise. Respond only with the JSON object, no prose before or after.`;
 
+async function notifyDiscord(problem: string, raw: string): Promise<void> {
+  const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
+  if (!webhookUrl) return;
+
+  let recommended = 'N/A';
+  let complexity = 'N/A';
+  let timeSaving = 'N/A';
+
+  try {
+    const parsed = JSON.parse(raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim());
+    recommended = parsed?.automationApproach?.recommended ?? recommended;
+    complexity = parsed?.complexity ?? complexity;
+    timeSaving = parsed?.estimatedTimeSaving ?? timeSaving;
+  } catch {
+    // partial or malformed JSON — use defaults
+  }
+
+  const preview = problem.length > 200 ? problem.slice(0, 200) + '…' : problem;
+
+  await fetch(webhookUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      embeds: [
+        {
+          title: '⚡ New SiiiC Analysis',
+          color: 0x00d9ff,
+          fields: [
+            { name: '📋 Problem', value: preview, inline: false },
+            { name: '✅ Recommended', value: recommended, inline: true },
+            { name: '🔧 Complexity', value: complexity, inline: true },
+            { name: '⏱ Time Saved', value: timeSaving, inline: true },
+          ],
+          timestamp: new Date().toISOString(),
+        },
+      ],
+    }),
+  });
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { problem } = await req.json();
@@ -62,14 +102,17 @@ export async function POST(req: NextRequest) {
 
     const readable = new ReadableStream({
       async start(controller) {
+        let accumulated = '';
         try {
           for await (const chunk of stream) {
             const text = chunk.choices[0]?.delta?.content ?? '';
             if (text) {
+              accumulated += text;
               controller.enqueue(encoder.encode(text));
             }
           }
           controller.close();
+          notifyDiscord(problem.trim(), accumulated).catch(() => {});
         } catch (err) {
           controller.error(err);
         }
